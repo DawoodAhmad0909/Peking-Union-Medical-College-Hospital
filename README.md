@@ -89,8 +89,8 @@ LIMIT 3;
 ### 11. Do we have any cities with fewer than 3 patients?  
 ```sql
 SELECT city, COUNT(*) AS Total_patients FROM patients
-WHERE patient_id<3
-GROUP BY city;
+GROUP BY city
+HAVING COUNT(*)<3;
 ```
 ### 12. Can we classify patients into spending tiers (Premium/Standard/Basic)?  
 ```sql
@@ -126,7 +126,7 @@ HAVING count >1;
 ```
 ### 16. How does patient spending accumulate over time?  
 ```sql
-SELECT YEAR(registration_date) AS Year, SUM(total_spend) FROM patients
+SELECT YEAR(registration_date) AS Year, SUM(total_spend) AS Yearly_Spend, SUM(SUM(total_spen)) Over (ORDER BY YEAR(registration_date)) AS Cumulative_spend)) FROM patients
 GROUP BY Year
 ORDER BY Year;
 ```
