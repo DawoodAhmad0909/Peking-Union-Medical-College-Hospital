@@ -78,8 +78,8 @@ ORDER BY Revenue DESC
 LIMIT 3;
 
 SELECT city, COUNT(*) AS Total_patients FROM patients
-WHERE patient_id<3
-GROUP BY city;
+GROUP BY city
+HAVING COUNT(*)<3;
 
 SELECT patient_id, CONCAT( first_name,' ',last_name) AS Patient_name, 
 	CASE WHEN total_spend BETWEEN 100.00 AND 3000.00 THEN 'Basic'
@@ -105,7 +105,7 @@ SELECT CONCAT( first_name,' ',last_name) AS Patient_name, COUNT(*) AS count FROM
 GROUP BY  Patient_name
 HAVING count >1;
 
-SELECT YEAR(registration_date) AS Year, SUM(total_spend) FROM patients
+SELECT YEAR(registration_date) AS Year, SUM(total_spend) AS Yearly_spend,SUM(SUM(total_spend)) OVER (ORDER BY YEAR(registration_date)) AS Cumulative_spend FROM patients
 GROUP BY Year
 ORDER BY Year;
  
