@@ -6,7 +6,26 @@
 To manage the Peking Union hospital patient data systematically for accurate, scalable analysis and decision-making.
 The analysis is based on following factors 
 Demographic,Financial Performance,PatientActivity & Retention,Geographic Insights,Patient Segmentation,Quality of data,Advanced Analytics,Comparative Analysis.
-
+## Database Creation
+```sql 
+CREATE DATABASE PUMCH_db;
+USE PUMCH_db;
+```
+## Table Creation
+``` sql 
+CREATE TABLE patients (
+        patient_id INT PRIMARY KEY,
+        first_name VARCHAR(20),
+        last_name VARCHAR(20),
+        date_of_birth DATE,
+        gender VARCHAR(5),
+        city VARCHAR(30),
+        insurance_provider VARCHAR(50),
+        registration_date DATE,
+        last_visit_date DATE,
+    total_spend DECIMAL(10,2)
+);
+```
 ## Objective Queries 
 ### 1. How many patients do we have by gender?  
 
